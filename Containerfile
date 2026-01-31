@@ -24,7 +24,7 @@ FROM ghcr.io/ublue-os/ucore:stable
 ## by the package manager.
 
 # RUN rm /opt && mkdir /opt
-RUN mkdir -p /var/docker && chown 1000:1000 /var/docker && ln -s /var/docker /docker
+RUN mkdir -p /var/docker && ln -s /var/docker /docker
 
 ### MODIFICATIONS
 ## make modifications desired in your image and install packages by modifying the build.sh script
