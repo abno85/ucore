@@ -24,6 +24,7 @@ FROM ghcr.io/ublue-os/ucore:stable
 ## by the package manager.
 
 # RUN rm /opt && mkdir /opt
+RUN mkdir /docker && chown 1000:1000 /docker
 
 ### MODIFICATIONS
 ## make modifications desired in your image and install packages by modifying the build.sh script
