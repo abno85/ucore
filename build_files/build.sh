@@ -23,26 +23,26 @@ set -ouex pipefail
 
 #systemctl enable podman.socket
 
-# Enable repos
-sed -i 's@enabled=0@enabled=1@g' "/etc/yum.repos.d/terra.repo"
-
-# install extra packages from fedora repos
+# install extra packages
 dnf5 install -y \
     htop \
     screen
 
+
+# install brew
 dnf5 -y copr enable ublue-os/packages
 dnf5 -y install ublue-brew
 dnf5 -y copr disable ublue-os/packages
-
-# remove pre-installed packages
-dnf5 remove -y \
-    tailscale
-
-# Disable repos
-sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/terra.repo"
-
-
 systemctl enable brew-setup.service
 systemctl enable brew-upgrade.timer
 systemctl enable brew-update.timer
+
+
+# remove packages
+dnf5 remove -y \
+    tailscale
+
+
+# Clean up
+dnf5 autoremove -y
+dnf5 clean -y all
