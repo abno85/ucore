@@ -171,7 +171,7 @@ jobs:
         with:
           registry: ${{ secrets.HOMEREGISTRY_URL }}
           username: ${{ secrets.HOMEREGISTRY_USER }}
-          password: ${{ secrets.HOMEREGISTRY_PASS }}
+          password: ${{ secrets.HOMEREGISTRY_TOKEN }}
 
       - name: Push To self-hosted Container Registry
         uses: redhat-actions/push-to-registry@5ed88d269cf581ea9ef6dd6806d01562096bee9c # v2
@@ -179,7 +179,7 @@ jobs:
         id: push-home
         env:
           REGISTRY_USER: ${{ secrets.HOMEREGISTRY_USER }}
-          REGISTRY_PASSWORD: ${{ secrets.HOMEREGISTRY_PASS }}
+          REGISTRY_PASSWORD: ${{ secrets.HOMEREGISTRY_TOKEN }}
         with:
           registry: ${{ env.IMAGE_REGISTRY }}
           image: ${{ env.IMAGE_NAME }}
